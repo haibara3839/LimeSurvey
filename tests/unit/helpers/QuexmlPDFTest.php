@@ -4,6 +4,9 @@ namespace ls\tests;
 
 /**
  * Test expression warning.
+ *
+ * Test for feature "16263: New config setting for date format and question code"
+ * @see https://bugs.limesurvey.org/view.php?id=16263
  */
 class QuexmlPDFTest extends TestBaseClass
 {
@@ -89,7 +92,6 @@ class QuexmlPDFTest extends TestBaseClass
 
         $id = $this->getQuestionIdentifier();
         $this->assertEquals($id, "A1.", "Unexpected identifier for question 1.");
-
     }
 
     /**
@@ -105,6 +107,9 @@ class QuexmlPDFTest extends TestBaseClass
 
     }
 
+    /**
+     * @return string
+     */
     protected function getQuestionIdentifier()
     {
         \Yii::app()->loadHelper('export');
@@ -122,6 +127,9 @@ class QuexmlPDFTest extends TestBaseClass
         return $xml['sections'][0]['questions'][0]['title'];
     }
 
+    /**
+     * @return DOMXpath
+     */
     protected function getXPath()
     {
         \Yii::app()->loadHelper('export');
