@@ -1412,8 +1412,9 @@ function quexml_set_default_value(&$element, $iResponseID, $qid, $iSurveyID, $fi
  * @param mixed $element DOM element with the date to change
  * @param int $qid The qid of the question
  * @param int $iSurveyID The survey id
+ * @return void
  */
-function quexml_reformat_date(&$element, $qid, $iSurveyID)
+function quexml_reformat_date(DOMElement $element, $qid, $iSurveyID)
 {
     // Retrieve date format from the question
     $questionAttributes = QuestionAttribute::model()->getQuestionAttributes($qid);
@@ -1424,7 +1425,7 @@ function quexml_reformat_date(&$element, $qid, $iSurveyID)
     $currentValue = $element->getAttribute("defaultValue");
 
     // Convert the value using the survey's date format
-    $value = date($dateformat,strtotime($currentValue));
+    $value = date($dateformat, strtotime($currentValue));
 
     // Change the value in the DOM element
     $element->setAttribute("defaultValue", $value);
